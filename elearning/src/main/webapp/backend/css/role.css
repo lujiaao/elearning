@@ -1,0 +1,58 @@
+.top {
+				margin-top: 20px;
+				margin-bottom: 20px;
+				height: 50px;
+			}
+			
+			.role-btn{
+				height: 26px;
+				line-height: 13px;
+				text-align: center;
+			}
+			
+			#th1-role{
+				width=40px;
+			}
+			
+			.table-role{
+				margin-top: 30px;
+			}
+			
+			.tr-role{
+				background-color: #eee;
+				height: 36px;
+			}
+			
+			.tr-top{
+				background-color: #eee;
+				height: 36px;
+			}
+			
+			.tr-role td{
+				font-size:16px;
+			}
+			
+			.acol-role{
+				height: 57px;
+				line-height: 25px;
+				text-align: right;
+			}
+			
+			.acol-role-left{
+				height: 57px;
+				line-height: 25px;
+				text-align: left;
+			}
+			
+			/*.row .row {
+				margin-top: 10px;
+				margin-bottom: 0;
+			}*/
+			[class*="col-"]{
+				padding-top: 15px;
+				padding-bottom: 15px;
+				background-color: #eee;
+				background-color: rgba(86, 61, 124, .15);
+				/*border: 1px solid #ddd;
+				border: 1px solid rgba(86, 61, 124, .2);*/
+			}
