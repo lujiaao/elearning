@@ -4,8 +4,6 @@ package cn.uc.ele.dao;
 import java.io.Serializable;
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
-
 import cn.uc.ele.Exception.DaoException;
 
 /**
@@ -15,7 +13,7 @@ import cn.uc.ele.Exception.DaoException;
  *
  * @param <T> 具体操作的实体对象（类）
  */
-@Repository
+
 public interface BaseDao<T> {
 
 	/**

@@ -1,6 +1,7 @@
 package cn.uc.ele.service;
 
 import java.io.Serializable;
+import java.util.List;
 
 import cn.uc.ele.Exception.DaoException;
 import cn.uc.ele.Exception.ServiceException;
@@ -37,4 +38,6 @@ public interface BaseService<T> {
 	 * @return
 	 */
 	T getById(Class<?> cls, Serializable id) throws DaoException,ServiceException;
+	
+	List<T> findByAll(String hql,Object... params) throws DaoException,ServiceException;
 }

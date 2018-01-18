@@ -13,14 +13,21 @@
      	 http://www.springframework.org/schema/tx/spring-tx.xsd"
 	default-autowire="byName">
 	<!-- 引入properties文件 -->
-	 <context:property-placeholder location="classpath:db.properties" /> 
+	 <context:property-placeholder location="classpath:*.properties" /> 
 	
-	<!-- spring配置hibernate的数据源,即数据库连接四要素的配置 -->
+	<!-- spring配置hibernate的数据源,即数据库连接四要素的配置,使用c3p0来配置数据源 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="jdbcUrl" value="${jdbc.url}"></property>
 		<property name="user" value="${jdbc.user}"></property>
 		<property name="password" value="${jdbc.password}"></property>
 		<property name="driverClass" value="${jdbc.driver}"></property>
+		
+		<!-- 初始化池子大小 -->
+		<property name="initialPoolSize" value="${initPoolSize}"></property>
+		
+		<!-- 池子最大数 -->
+		<property name="maxPoolSize" value="${maxPoolSize}"></property>
+		
 	</bean>
 
 	<!-- sessionFactory -->
@@ -46,6 +53,7 @@
 				<value>cn.uc.ele.pojo</value>
 			</list>
 		</property>
+		<!-- <property name="packagesToScan" value="cn.uc.ele.pojo"/> -->
 	</bean>
 	
 </beans>

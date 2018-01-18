@@ -19,6 +19,11 @@
 		<log.version>1.2.17</log.version>
 		<maven.resources.plugin>2.4.3</maven.resources.plugin>
 		<jackson.version>2.6.3</jackson.version>
+		<!--Tomcat的maven插件，用于本地机测试 -->
+		<org.apache.tomcat.maven.tomcat7.version>2.1</org.apache.tomcat.maven.tomcat7.version>
+		<!-- 指定Tomcat的maven插件的port号 -->
+		<org.apache.tomcat.maven.tomcat7.configuration.port>9090</org.apache.tomcat.maven.tomcat7.configuration.port>
+		<org.apache.tomcat.maven.tomcat7.configuration.server>tomcat7</org.apache.tomcat.maven.tomcat7.configuration.server>
 	</properties>
 	<build>
 		<plugins>
@@ -32,6 +37,17 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+			<!--Tomcat的maven插件，用于本地机测试 -->
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>${org.apache.tomcat.maven.tomcat7.version}</version>
+				<configuration>
+					<port>${org.apache.tomcat.maven.tomcat7.configuration.port}</port>
+					<server>${org.apache.tomcat.maven.tomcat7.configuration.server}</server>
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</build>
 	<dependencies>
@@ -42,7 +58,11 @@
 			<version>${junit.version}</version>
 
 		</dependency>
-
+		<dependency>
+			<groupId>org.apache.geronimo.bundles</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.6.8_2</version>
+		</dependency>
 		<dependency>
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>

@@ -10,13 +10,14 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import cn.uc.ele.Exception.DaoException;
 import cn.uc.ele.dao.BaseDao;
 
 //spring中提供了一个对hibernate的dao方法实现的一个基类，可以通过继承该基类，轻松实现相关dao方法
 @SuppressWarnings("all")
-@Repository
 public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 
 	@Resource(name = "sessionFactory")
@@ -25,12 +26,13 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 	}
 	
 	@Override
+	//@Transactional(propagation =Propagation.REQUIRED)
 	public void add(T t) throws DaoException {
-//		try {
+		try {
 			this.getHibernateTemplate().save(t);
-//		} catch (Exception e) {
-//			throw new DaoException("添加数据失败");
-//		}
+		} catch (Exception e) {
+			throw new DaoException("添加数据失败");
+		}
 		
 	}
 
@@ -46,22 +48,22 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 
 	@Override
 	public void update(T t) throws DaoException {
-		try {
+//		try {
 			this.getHibernateTemplate().update(t);
-		} catch (Exception e) {
-			throw new DaoException("更新数据失败");
-		}
+//		} catch (Exception e) {
+//			throw new DaoException("更新数据失败");
+//		}
 		
 	}
 
 	@Override
 	public T getById(Class<?> cls, Serializable id) throws DaoException {
 		T t = null;
-//		try {
+		try {
 			t = (T) this.getHibernateTemplate().get(cls, id);
-//		} catch (Exception e) {
-//			throw new DaoException("根据id未查到记录");
-//		}
+		} catch (Exception e) {
+			throw new DaoException("根据id未查到记录");
+		}
 		return t;
 	}
 

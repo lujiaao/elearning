@@ -11,15 +11,53 @@
          http://www.springframework.org/schema/aop/spring-aop.xsd
          http://www.springframework.org/schema/tx
      	 http://www.springframework.org/schema/tx/spring-tx.xsd"
-     	 >
+     	 default-autowire="byName">
 
 	<!-- 导入spring-db.xml文件 -->
 	<import resource="spring-db.xml" />
 
 	<!-- 扫描所有的service -->
 	<context:component-scan base-package="cn.uc.ele.service" />
-	
+
 	<!-- 自动扫描所有的dao -->
 	<context:component-scan base-package="cn.uc.ele.dao" />
+
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<!-- 配置哪些类那些方法使用事务 -->
+	
+	<!-- <aop:config>
+		<aop:pointcut id="serviceMethod"
+			expression="execution(* cn.uc.ele.dao.impl.*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethod" />
+	</aop:config> -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+
+	<!-- 配置事务通知 -->
+	<!-- 事务传播(propagation)属性说明：
+REQUIRED，默认值, 支持当前事务，如果当前没有事务，就新建一个事务
+SUPPORT, 支持当前事务，如果当前没有事务，就以非事务方式执行
+MANDATORY：支持当前事务，如果当前没有事务，就抛出异常。 
+[ˈmændətəri]
+REQUIRES_NEW：新建事务，如果当前存在事务，把当前事务挂起。Requires_new
+NOT_SUPPORTED：以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。
+NEVER：以非事务方式执行，如果当前存在事务，则抛出异常。 
+NESTED：支持当前事务，如果当前事务存在，则执行一个嵌套事务，如果当前没有事务，就新建一个事务。 -->
+	<!-- <tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="del*" propagation="REQUIRED" />
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="find*" read-only="true" />
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="*" read-only="true" />
+		</tx:attributes>
+	</tx:advice> -->
+
 
 </beans>
