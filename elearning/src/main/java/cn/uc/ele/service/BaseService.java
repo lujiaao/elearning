@@ -30,5 +30,6 @@ public interface BaseService<T> {
 	 * @param t
 	 */
 	void edit(T t) throws DaoException,ServiceException;
+	
 
 }

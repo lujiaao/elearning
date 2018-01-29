@@ -25,6 +25,15 @@
 	height: 25px;
 	padding-top: 0 !important;
 	padding-bottom: 0 !important;
+	text-align: center;
+}
+
+.my-acol {
+	padding: 0;
+}
+
+.my-pageLimit {
+	margin: 12px 0 11px 0;
 }
 </style>
 </head>
@@ -55,7 +64,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${requestScope.roles }" var="role">
+				<c:forEach items="${roles }" var="role">
 					<tr class="tr-role">
 						<td width="15%">${role.roleName }</td>
 						<td width="28%">${role.roleCode }</td>
@@ -94,19 +103,25 @@
 		</table>
 
 		<div class="foot">
-			<div class="col-md-10 acol-role-left">
-				<span>总记录数:<span>总记录数</span></span>
+			<div class="col-md-2 acol-role-left">
+				<span>总记录数：<span>${count }</span></span>
+
 			</div>
 			<!--分页区域-->
-			<!-- <div class="panel-footer"> -->
-				<!--分页界面-->
-				<div id="pageDiv" style="text-align: center;border:1px solid #000;">
+			<!-- <div class="col-md-8  text-align  my-acol">
+				<ul id="pageLimit" class="navbar-btn"></ul>
+			</div> -->
+			<!--分页界面-->
+			<div class="col-md-8 my-acol">
+				<div id="pageDiv" style="text-align:center;">
 					<ul id="pageLimit"></ul>
 				</div>
-			<!-- </div> -->
-			<div class="col-md-2 acol-role">
-				<span><span>当前页数</span>/<span>总页数</span></span>
 			</div>
+			<div class="col-md-2 acol-role">
+				<span><span>当前页数：</span>/<span>${pageNum }</span></span>
+			</div>
+
+			<!-- <div id="pageBox"></div> -->
 		</div>
 	</div>
 
@@ -133,18 +148,18 @@
 		<!-- /.modal-dialog -->
 	</div>
 </body>
-
+<script src="<%=appPath%>/js/bootstrap-paginator.min.js"></script>
 <script>
-	
+$(function(){
 	//分页初始化
 	//	分页前端脚本
     $('#pageLimit').bootstrapPaginator({
-        currentPage: ${pageInfo.pageNum},//当前的请求页面。
-        totalPages: ${pageInfo.pages},//一共多少页。
+        currentPage:${requestScope.pageNum},//当前的请求页面。
+        totalPages:${requestScope.pages},//一共多少页。
         size: "normal",//应该是页眉的大小。
         bootstrapMajorVersion: 3,//bootstrap的版本要求。
         alignment: "right",
-        numberOfPages:${pageInfo.pageSize},//一页列出多少数据。
+        numberOfPages:${requestScope.pageSize},//一页列出多少数据。
         itemTexts: function (type, page, current) {//如下的代码是将页眉显示的中文显示我们自定义的中文。
             switch (type) {
                 case "first":
@@ -160,11 +175,11 @@
             }
         },
         onPageClicked: function (event, originalEvent, type, page) {//给每个页眉绑定一个事件，其实就是ajax请求，其中page变量为当前点击的页上的数字。
-
-        window.location = "<%=appPath%>system/NewsServlet.action?method=select&currentPage="+page;
-
+        	window.location = "<%=appPath%>/backend/getByAll?pageNum="+page;
         }
     });
+    $('#pageLimit').addClass("my-pageLimit");
+});
 </script>
 
 </html>

@@ -169,10 +169,12 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 						query.setParameter(i, params[i]);
 					}
 				}
+				System.out.println("pageIndex:"+pageIndex);
+				System.out.println("PageSize:"+PageSize);
 				// 开始的行索引
 				query.setFirstResult(pageIndex);
 				// 查询条数
-				query.setMaxResults(pageIndex);
+				query.setMaxResults(PageSize);
 				ts = query.list();
 			} catch (Exception e) {
 				throw new DaoException("分页查询失败");
@@ -189,10 +191,10 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 	@Override
 	public long selectCountsByCondition(String hql, Object... params) throws DaoException {
 		Session session = null;
-		long counts = 0;
-		try {
+		long counts=0;
+//		try {
 			session = this.getSessionFactory().openSession();
-			try {
+//			try {
 				Query query = session.createQuery(hql);
 				if (params != null) {
 					for (int i = 0; i < params.length; i++) {
@@ -200,15 +202,15 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 					}
 				}
 				counts = (long) query.uniqueResult();
-			} catch (Exception e) {
-				throw new DaoException("查询所记录失败");
-			}
-		} catch (Exception e) {
-			throw new DaoException("session获取失败");
-		} finally {
-			if (session != null)
-				session.close();
-		}
+//			} catch (Exception e) {
+//				throw new DaoException("查询所记录失败");
+//			}
+//		} catch (Exception e) {
+//			throw new DaoException("session获取失败");
+//		} finally {
+//			if (session != null)
+//				session.close();
+//		}
 		return counts;
 	}
 

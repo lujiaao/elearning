@@ -34,7 +34,7 @@ String appPath =request.getServletContext().getContextPath();
 						<li><a href="<%=appPath%>/ManagerServlet?action=listManagerByPagenum" target="mainFx"><span class="fa fa-caret-right"></span> 查找用户</a></li>
 		<!-- 第五小组 -->
 						<!-- 角色管理 -->
-						<li><a href="<%=appPath%>/backend/getByAll" target="mainFx"><span class="fa fa-caret-right"></span> 角色管理</a></li>
+						<li><a href="<%=appPath%>/backend/getByAll?pageNum=1" target="mainFx"><span class="fa fa-caret-right"></span> 角色管理</a></li>
 						<!-- 岗位管理 -->
 						<li><a href="<%=appPath%>/backend/user/post/post_main.jsp" target="mainFx"><span class="fa fa-caret-right"></span> 岗位管理</a></li>
 					</ul>
