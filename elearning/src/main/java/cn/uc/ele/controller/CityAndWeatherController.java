@@ -30,6 +30,9 @@ public class CityAndWeatherController {
 	@RequestMapping("/weather")
 	@ResponseBody
 	public List<String> findWeather(String city) {
-		return cityAndWeatherService.getWeather(city);
+		System.out.println("city:"+city);
+		List<String> weather = cityAndWeatherService.getWeather(city);
+//		System.out.println("weather:"+weather);
+		return weather;
 	}
 }

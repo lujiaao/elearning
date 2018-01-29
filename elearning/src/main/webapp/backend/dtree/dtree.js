@@ -41,20 +41,20 @@ function dTree(objName) {
 		inOrder					: false
 	}
 	this.icon = {
-		root				: '/el/backend/dtree/img/base.gif',
-		folder			: '/el/backend/dtree/img/folder.gif',
-		folderOpen	: '/el/backend/dtree/img/folderopen.gif',
-		node				: '/el/backend/dtree/img/page.gif',
-		empty				: '/el/backend/dtree/img/empty.gif',
-		line				: '/el/backend/dtree/img/line.gif',
-		join				: '/el/backend/dtree/img/join.gif',
-		joinBottom	: '/el/backend/dtree/img/joinbottom.gif',
-		plus				: '/el/backend/dtree/img/plus.gif',
-		plusBottom	: '/el/backend/dtree/img/plusbottom.gif',
-		minus				: '/el/backend/dtree/img/minus.gif',
-		minusBottom	: '/el/backend/dtree/img/minusbottom.gif',
-		nlPlus			: '/el/backend/dtree/img/nolines_plus.gif',
-		nlMinus			: '/el/backend/dtree/img/nolines_minus.gif'
+		root				: '/elearning/backend/dtree/img/base.gif',
+		folder			: '/elearning/backend/dtree/img/folder.gif',
+		folderOpen	: '/elearning/backend/dtree/img/folderopen.gif',
+		node				: '/elearning/backend/dtree/img/page.gif',
+		empty				: '/elearning/backend/dtree/img/empty.gif',
+		line				: '/elearning/backend/dtree/img/line.gif',
+		join				: '/elearning/backend/dtree/img/join.gif',
+		joinBottom	: '/elearning/backend/dtree/img/joinbottom.gif',
+		plus				: '/elearning/backend/dtree/img/plus.gif',
+		plusBottom	: '/elearning/backend/dtree/img/plusbottom.gif',
+		minus				: '/elearning/backend/dtree/img/minus.gif',
+		minusBottom	: '/elearning/backend/dtree/img/minusbottom.gif',
+		nlPlus			: '/elearning/backend/dtree/img/nolines_plus.gif',
+		nlMinus			: '/elearning/backend/dtree/img/nolines_minus.gif'
 	};
 	this.obj = objName;
 	this.aNodes = [];

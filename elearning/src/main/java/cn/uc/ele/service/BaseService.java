@@ -23,21 +23,12 @@ public interface BaseService<T> {
 	 * 删除业务操作
 	 * @param t
 	 */
-	void delete(T t) throws DaoException,ServiceException;
+	void del(T t) throws DaoException,ServiceException;
 
 	/**
 	 * 修改业务操作
 	 * @param t
 	 */
-	void update(T t) throws DaoException,ServiceException;
+	void edit(T t) throws DaoException,ServiceException;
 
-	/**
-	 * 根据id查询业务
-	 * @param cls
-	 * @param id
-	 * @return
-	 */
-	T getById(Class<?> cls, Serializable id) throws DaoException,ServiceException;
-	
-	List<T> findByAll(String hql,Object... params) throws DaoException,ServiceException;
 }

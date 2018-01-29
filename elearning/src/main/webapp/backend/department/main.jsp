@@ -53,7 +53,7 @@
 					
 						$(function() {
 							//获取服务器端的部门列表，并显示
-							$.getJSON("<%=path%>/department/list", function(data) {
+							$.getJSON("<%=path%>/backend/findDepartmentAll", function(data) {
 								console.log(data.length);
 								console.log(data);
 					
@@ -62,9 +62,9 @@
 								d.add(0, -1, '部门列表');
 								for (var i = 0; i < data.length; i++) {
 									if (data[i].parentId == null)
-										d.add(data[i].id, 0, data[i].name, "javascript:listSubDept(" + data[i].id + ",'" + data[i].name + "')");
+										d.add(data[i].id, 0, data[i].depttName, "javascript:listSubDept(" + data[i].id + ",'" + data[i].depttName + "')");
 									else
-										d.add(data[i].id, data[i].parentId, data[i].name, "javascript:listSubDept(" + data[i].id + ",'" + data[i].name + "')");
+										d.add(data[i].id, data[i].parentId, data[i].depttName, "javascript:listSubDept(" + data[i].id + ",'" + data[i].depttName + "')");
 								}
 								var str = d.toString();
 					

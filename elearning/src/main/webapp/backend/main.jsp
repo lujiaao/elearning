@@ -15,7 +15,7 @@
 
 <title>Insert title here</title>
 </head>
-  <frameset rows="7%,*">
+  <frameset rows="5.2%,*">
 		<frame src="<%=appPath %>/backend/top.jsp" />
 		<frameset cols="20%,*">
 			<frame src="<%=appPath %>/backend/left.jsp" />

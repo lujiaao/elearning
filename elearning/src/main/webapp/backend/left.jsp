@@ -28,19 +28,24 @@ String appPath =request.getServletContext().getContextPath();
 				<li><a href="#" data-target=".dashboard-menu" class="nav-header" data-toggle="collapse"><i class="fa fa-fw fa-dashboard"></i>用户模块<i class="fa fa-collapse"></i></a></li>
 				<li>
 					<ul class="dashboard-menu nav nav-list collapse in">
-						<li><a href="<%=appPath%>/backend/findUacUserByAll" target="mainFx"><span class="fa fa-caret-right"></span> 用户列表</a></li>
+						<li><a href="<%=appPath%>/backend/userFindByAll" target="mainFx"><span class="fa fa-caret-right"></span> 用户列表</a></li>
 						<li><a href="<%=appPath%>/backend/department/main.jsp" target="mainFx"><span class="fa fa-caret-right"></span> 显示树</a></li>
 						<li><a href="<%=appPath%>/backend/user/role/role_main.jsp" target="mainFx"><span class="fa fa-caret-right"></span> 修改用户</a></li>
 						<li><a href="<%=appPath%>/ManagerServlet?action=listManagerByPagenum" target="mainFx"><span class="fa fa-caret-right"></span> 查找用户</a></li>
-						
-<!-- 第五小组 -->
+		<!-- 第五小组 -->
 						<!-- 角色管理 -->
-						<li><a href="<%=appPath%>/backend/user/role/role_main.jsp" target="mainFx"><span class="fa fa-caret-right"></span> 角色管理</a></li>
+						<li><a href="<%=appPath%>/backend/getByAll" target="mainFx"><span class="fa fa-caret-right"></span> 角色管理</a></li>
 						<!-- 岗位管理 -->
 						<li><a href="<%=appPath%>/backend/user/post/post_main.jsp" target="mainFx"><span class="fa fa-caret-right"></span> 岗位管理</a></li>
-					
-					
-					
+					</ul>
+				</li>
+				
+				<li><a href="#" data-target=".accounts-menu1" class="nav-header collapsed" data-toggle="collapse"><i class="fa fa-fw fa-briefcase"></i>课程模块<i class="fa fa-collapse"></i></a></li>
+				<li>
+					<ul class="accounts-menu1 nav nav-list collapse">
+						<li><a href="<%=appPath%>/backend/course/course_main.jsp" target="mainFx"><span class="fa fa-caret-right"></span>所有课程</a></li>
+						<li><a href="<%=appPath%>/AnnoServlet?action=toSave"><span class="fa fa-caret-right"></span>增加公告</a></li>
+						<li><a href="/UGShop/Manage/annoSearch.jsp"><span class="fa fa-caret-right"></span>查找公告</a></li>
 					</ul>
 				</li>
 
@@ -48,13 +53,14 @@ String appPath =request.getServletContext().getContextPath();
 				<li data-popover="true" rel="popover" data-placement="right"><a href="#" data-target=".premium-menu" class="nav-header collapsed" data-toggle="collapse"><i class="fa fa-fw fa-fighter-jet"></i>订单模块<i class="fa fa-collapse"></i></a></li>
 				<li>
 					<ul class="premium-menu nav nav-list collapse">
-						<li><a href="backModel2.jsp"><span class="fa fa-caret-right"></span>添加订单</a></span></li>
+						<li><a href=""><span class="fa fa-caret-right"></span>添加订单</a></span></li>
 						<li><a href="#"><span class="fa fa-caret-right"></span>删除订单</a></li>
 						<li><a href="premium-blog.html"><span class="fa fa-caret-right"></span>修改订单</a></li>
 						<li><a href="premium-blog-item.html"><span class="fa fa-caret-right"></span>查找订单</a></li>
 						<li><a href="premium-pricing-tables.html"><span class="fa fa-caret-right"></span> Pricing Tables</a></li>
 					</ul>
 				</li>
+				
 
 				<!--<li><a href="#" data-target=".accounts-menu" class="nav-header collapsed" data-toggle="collapse"><i class="fa fa-fw fa-briefcase"></i> Account <span class="label label-info">+3</span></a></li>-->
 				<li><a href="#" data-target=".accounts-menu" class="nav-header collapsed" data-toggle="collapse"><i class="fa fa-fw fa-briefcase"></i>公告模块<i class="fa fa-collapse"></i></a></li>
@@ -79,7 +85,6 @@ String appPath =request.getServletContext().getContextPath();
 </body>
 </html>
 
-    <script src="<%=appPath%>/backend/bootstrap/js/bootstrap.js"></script>
 	<script type="text/javascript">
 		$("[rel=tooltip]").tooltip();
 		$(function() {

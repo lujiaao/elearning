@@ -6,7 +6,7 @@
 			+ path + "/";
 %>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML>
 <html>
 <head>
 <base href="<%=basePath%>">
@@ -24,8 +24,7 @@
 </head>
 
 <body>
-	<form class="form-horizontal" action="<%=basePath%>backend/editUacUser"
-		method="post">
+	<form class="form-horizontal" action="<%=basePath%>backend/userEdit" method="post">
 		<div class="form-group">
 			<label class="col-xs-4 control-label">登录名：</label>
 			<div class="col-xs-4">
@@ -68,26 +67,26 @@
 				<c:choose>
 					<c:when test="${uacUser.gender eq 1}">
 						<label class="radio-inline"> <input type="radio"
-							name="gender" id="" value="1" checked="checked"> 男
+							name="gender"  value="1" checked="checked"> 男
 						</label>
 						<label class="radio-inline"> <input type="radio"
-							name="gender" id="" value="0"> 女
+							name="gender"  value="0"> 女
 						</label>
 					</c:when>
 					<c:when test="${uacUser.gender eq 0}">
 						<label class="radio-inline"> <input type="radio"
-							name="gender" id="" value="1"> 男
+							name="gender"  value="1"> 男
 						</label>
 						<label class="radio-inline"> <input type="radio"
-							name="gender" id="" value="0" checked="checked"> 女
+							name="gender"  value="0" checked="checked"> 女
 						</label>
 					</c:when>
 					<c:otherwise>
 						<label class="radio-inline"> <input type="radio"
-							name="gender" id="" value="1"> 男
+							name="gender"  value="1"> 男
 						</label>
 						<label class="radio-inline"> <input type="radio"
-							name="gender" id="" value="0"> 女
+							name="gender"  value="0"> 女
 						</label>
 					</c:otherwise>
 				</c:choose>
@@ -96,19 +95,17 @@
 		<div class="form-group">
 			<label class="col-xs-4 control-label">所属部门</label>
 			<div class="col-xs-4">
-				<select name="deptName" class="form-control">
-					<option value="">1</option>
-					<option value="">2</option>
-					<option value="">3</option>
-					<option value="">4</option>
-					<option value="">5</option>
+				<select name="sysDepartment.id" class="form-control">
+					<c:forEach items="${requestScope.departments }" var="department">
+						<option value="${department.id }">${department.depttName }</option>
+					</c:forEach>
 				</select>
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-xs-4 control-label">用户角色</label>
 			<div class="col-xs-4">
-				<select name="deptName" class="form-control">
+				<select name="" class="form-control">
 					<option value="">1</option>
 					<option value="">2</option>
 					<option value="">3</option>
@@ -117,12 +114,13 @@
 				</select>
 			</div>
 		</div>
+		<input type="hidden" name="regTime" value="${uacUser.regTime }">
+		<input type="hidden" name="id" value="${uacUser.id }">
 		<div class="form-group">
 			<div class="col-xs-offset-7 col-xs-5">
-				<button type="submit" class="btn btn-default">提交修改</button>
+				<button type="submit" class="btn btn-primary">提交修改</button>
 			</div>
 		</div>
-		<input type="hidden" name="id" value="${uacUser.id }">
 	</form>
 </body>
 </html>

@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * SysDepartment entity. @author MyEclipse Persistence Tools
  */
@@ -25,6 +27,7 @@ public class SysDepartment implements java.io.Serializable {
 	private String depttName;
 	private String deptCode;
 	private Integer parentId;
+	@JsonIgnore
 	private Set<UacUser> uacUsers = new HashSet<UacUser>(0);
 
 	// Constructors

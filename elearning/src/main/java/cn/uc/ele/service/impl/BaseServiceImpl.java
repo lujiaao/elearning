@@ -22,35 +22,21 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	@Transactional(propagation=Propagation.REQUIRED)
 	public void add(T t) throws DaoException{
 		// TODO Auto-generated method stub
-		baseDao.add(t);
+		baseDao.insert(t);
 	}
 
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
-	public void delete(T t) throws DaoException {
+	public void del(T t) throws DaoException {
 		// TODO Auto-generated method stub
 		baseDao.delete(t);
 	}
 
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
-	public void update(T t) throws DaoException {
+	public void edit(T t) throws DaoException {
 		// TODO Auto-generated method stub
 		baseDao.update(t);
-	}
-
-	@Override
-	@Transactional(readOnly=true)
-	public T getById(Class<?> cls, Serializable id) throws DaoException {
-		// TODO Auto-generated method stub
-		return baseDao.getById(cls, id);
-	}
-
-	@Override
-	@Transactional(readOnly=true)
-	public List<T> findByAll(String hql, Object... params) throws DaoException, ServiceException {
-		// TODO Auto-generated method stub
-		return baseDao.getListByCondition(hql, params);
 	}
 
 }

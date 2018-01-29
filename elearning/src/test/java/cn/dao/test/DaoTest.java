@@ -1,27 +1,60 @@
 package cn.dao.test;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.uc.ele.Exception.DaoException;
+import cn.uc.ele.dao.CurCourseinforDao;
 import cn.uc.ele.dao.UacUserDao;
+import cn.uc.ele.pojo.CurCourseinfor;
 import cn.uc.ele.pojo.UacUser;
+import cn.uc.ele.service.CityAndWeatherService;
 
 public class DaoTest {
 
 	public static void main(String[] args) {
-
-		new DaoTest().add();
+		//测试user表
+//		new DaoTest().addUser();
+//		new DaoTest().getByIdUser(4);
+//		new DaoTest().delUser();
+		//测试webService获取天气
+//		new DaoTest().getWeather();
+		//测试课程表curcourseinfo
+//		new DaoTest().getByIdCourseinfo();
 		
-//		new DaoTest().getById(4);
-//		new DaoTest().del();
+		
 	}
 	ApplicationContext context = new ClassPathXmlApplicationContext("spring-cfg.xml");
 	UacUserDao uacUserDao = context.getBean(UacUserDao.class,"uacUserDaoImpl");
 	UacUser uacUser = new UacUser();
 	
 	
-	public void del(){
+	
+	public void getByIdCourseinfo() {
+		CurCourseinforDao courseinforDao = context.getBean(CurCourseinforDao.class);
+		CurCourseinfor courseinfor=null;
+		try {
+			courseinfor = courseinforDao.selectById(CurCourseinfor.class, 1);
+		} catch (DaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(courseinfor.getCurName());
+	}
+	
+	public void getWeather(){
+		CityAndWeatherService cityAndWeatherService = context.getBean(CityAndWeatherService.class);
+		List<String> weather = cityAndWeatherService.getWeather("长沙");
+		System.out.println(weather);
+	}
+	
+	public void delUser(){
 		uacUser.setId(2);
 		try {
 			uacUserDao.delete(uacUser);
@@ -31,7 +64,7 @@ public class DaoTest {
 		}
 	}
 	
-	public void add() {
+	public void addUser() {
 
 		
 		uacUser.setAccount("小卢");
@@ -40,7 +73,7 @@ public class DaoTest {
 		uacUser.setPassword("123666");
 
 		try {
-			uacUserDao.add(uacUser);
+			uacUserDao.insert(uacUser);
 			System.out.println("添加成功");
 		} catch (DaoException e) {
 			e.printStackTrace();
@@ -48,9 +81,9 @@ public class DaoTest {
 		}
 	}
 
-	public void getById(int id) {
+	public void getByIdUser(int id) {
 		try {
-			UacUser uacUser = uacUserDao.getById(UacUser.class, id);
+			UacUser uacUser = uacUserDao.selectById(UacUser.class, id);
 			System.out.println(uacUser.getUsername());
 		} catch (DaoException e) {
 			// TODO Auto-generated catch block

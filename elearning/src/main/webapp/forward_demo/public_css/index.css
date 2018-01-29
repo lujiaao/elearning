@@ -229,5 +229,28 @@ li{
 }
 
 
+/*天气情况*/
+#weather .container>.row{
+    margin-left: 0;
+    margin-right: 0;
+}
+#weather .container>.row>#wea_box>div{
+	/*border: 1px solid gray;*/
+    height:180px;
+    margin:0 -1px;
+}
+#weather #city_box{
+	height:180px;
+	/*border: 1px solid gray;*/
+	margin-right:-px;
+}
 
-
+#weather #city_box .city_img .city_icon{
+    width:80%;
+    margin: 30px auto 5px auto;
+    /*border: 1px solid gray;*/
+}
+#weather #city_box .city_img img{
+    width:100%;
+    
+}

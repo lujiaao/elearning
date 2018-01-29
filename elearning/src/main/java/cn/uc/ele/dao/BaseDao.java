@@ -22,7 +22,7 @@ public interface BaseDao<T> {
 	 * @param t 表示要添加记录对应的实体对象
 	 * @throws DaoException 抛出数据持久化异常信息
 	 */
-	void add(T t) throws DaoException ;
+	void insert(T t) throws DaoException ;
 
 	/**
 	 * 对数据库进行删除一条记录操作
@@ -45,7 +45,7 @@ public interface BaseDao<T> {
 	 * @return 单个实体对象
 	 * @throws DaoException 抛出数据持久化异常信息
 	 */
-	T getById(Class<?> cls, Serializable id) throws DaoException ;
+	T selectById(Serializable id) throws DaoException ;
 
 	/**
 	 * 根据条件查询单个对象
@@ -56,7 +56,7 @@ public interface BaseDao<T> {
 	 * @return 单个实体对象
 	 * @throws DaoException 抛出数据持久化异常信息
 	 */
-	T getByCondition(String hql, Object... params) throws DaoException ;// hql
+	T selectByCondition(String hql, Object... params) throws DaoException ;// hql
 
 	/**
 	 * 根据条件查询多个对象
@@ -67,8 +67,14 @@ public interface BaseDao<T> {
 	 * @return 具体实体对象的list集合
 	 * @throws DaoException 抛出数据持久化异常信息
 	 */
-	List<T> getListByCondition(String hql, Object... params) throws DaoException ;
+	List<T> selectListByCondition(String hql, Object... params) throws DaoException;
 
+	/**
+	 * 查询所有记录
+	 * @return 具体实体对象的list集合
+	 * @throws DaoException
+	 */
+	List<T> selectByAll() throws DaoException;
 	/**
 	 * 根据分页条件查询多个对象
 	 * @param pageIndex 第几页
@@ -80,7 +86,7 @@ public interface BaseDao<T> {
 	 * @return 具体实体对象分页后的list集合
 	 * @throws DaoException 抛出数据持久化异常信息
 	 */
-	List<T> getPageListByCondition(int pageIndex, int PageSize, String hql, Object... params) throws DaoException ;
+	List<T> selectPageListByCondition(int pageIndex, int PageSize, String hql, Object... params) throws DaoException ;
 
 	/**
 	 * 查询数据条数
@@ -89,5 +95,5 @@ public interface BaseDao<T> {
 	 * @return 数据库中记录的条数
 	 * @throws DaoException 抛出数据持久化异常信息
 	 */
-	long getCountsByCondition(String hql, Object... params) throws DaoException ;
+	long selectCountsByCondition(String hql, Object... params) throws DaoException ;
 }
