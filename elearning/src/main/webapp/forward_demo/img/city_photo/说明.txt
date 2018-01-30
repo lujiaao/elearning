@@ -1,0 +1,18 @@
+
+城市/地区图片来自互联网，如果侵犯了您的权益或版权，请联系我们：http://www.webxml.com.cn/zh_cn/contact_us.aspx，我们将立即删除改正。
+
+我们不保证图片真实和可靠，请自己核对后再使用。
+
+
+包含部分城市/地区代表图片，二个文件夹，图片名为ID，关于ID可参考以下链接：
+
+http://www.webxml.com.cn/files/about_city.zip 文档
+
+http://www.webxml.com.cn/WebServices/WeatherWS.asmx 获取。
+
+
+
+
+======= WEBXML.com.cn WEB服务、网站设计、域名交易、ASP.net、XML、Web Service、Ajax解决方案和技术支持 ===========
+上海思集信息科技有限公司 Shanghai Ideabody Information Technology Co., Ltd.
+Website: http://www.ideabody.com/

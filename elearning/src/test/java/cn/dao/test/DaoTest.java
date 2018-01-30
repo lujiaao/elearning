@@ -40,7 +40,7 @@ public class DaoTest {
 		CurCourseinforDao courseinforDao = context.getBean(CurCourseinforDao.class);
 		CurCourseinfor courseinfor=null;
 		try {
-			courseinfor = courseinforDao.selectById(CurCourseinfor.class, 1);
+			courseinfor = courseinforDao.selectById(1);
 		} catch (DaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -83,7 +83,7 @@ public class DaoTest {
 
 	public void getByIdUser(int id) {
 		try {
-			UacUser uacUser = uacUserDao.selectById(UacUser.class, id);
+			UacUser uacUser = uacUserDao.selectById(id);
 			System.out.println(uacUser.getUsername());
 		} catch (DaoException e) {
 			// TODO Auto-generated catch block

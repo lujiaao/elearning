@@ -10,6 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.uc.ele.Exception.DaoException;
 import cn.uc.ele.Exception.ServiceException;
+import cn.uc.ele.dto.CurCourseinforDto;
 import cn.uc.ele.dto.UacUserDto;
 import cn.uc.ele.pojo.CurCourseinfor;
 import cn.uc.ele.pojo.UacUser;
@@ -19,64 +20,61 @@ import cn.uc.ele.service.UacUserService;
 
 public class ServiceText {
 	public static void main(String[] args) {
-		ApplicationContext context=new ClassPathXmlApplicationContext("spring-cfg.xml");
-		
-		
+		ApplicationContext context = new ClassPathXmlApplicationContext("spring-cfg.xml");
+
 		CityAndWeatherService cityAndWeatherService = context.getBean(CityAndWeatherService.class);
 		List<String> weather = cityAndWeatherService.getWeather("长沙");
-		System.out.println("weather:"+weather);
+		System.out.println("weather:" + weather);
 	}
-	
+
 	ApplicationContext context;
 	UacUserService uacUserService;
+
 	@Before
-	public void before(){
-		context=new ClassPathXmlApplicationContext("spring-cfg.xml");
-		uacUserService = context.getBean(UacUserService.class,"uacUserServiceImpl");
+	public void before() {
+		context = new ClassPathXmlApplicationContext("spring-cfg.xml");
+		uacUserService = context.getBean(UacUserService.class, "uacUserServiceImpl");
 	}
-	
+
 	@Ignore
 	@Test
-	public void getByIdCourseinfo(){
+	public void getByIdCourseinfo() {
 		CurCourseinforService courseinforService = context.getBean(CurCourseinforService.class);
 		try {
-			CurCourseinfor courseinfor = courseinforService.findById(CurCourseinfor.class, 1);
-			System.out.println(courseinfor.getCurName());
-		} catch (DaoException | ServiceException e) {
+			CurCourseinforDto courseinfor = courseinforService.findById(1);
+		} catch (DaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-				
+
 	}
-	
+
 	@Ignore
 	@Test
-	public void getWeather(){
+	public void getWeather() {
 		CityAndWeatherService cityAndWeatherService = context.getBean(CityAndWeatherService.class);
 		List<String> weather = cityAndWeatherService.getWeather("长沙");
 		System.out.println(weather);
 	}
-	
-	//@Ignore
+
+	// @Ignore
 	@Test
-	public void getById(){
+	public void getById() {
 		try {
-			UacUser uacUser;
-			try {
-				uacUser = uacUserService.findById(UacUser.class, 1);
-				System.out.println(uacUser.getUsername());
-			} catch (ServiceException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			UacUserDto uacUser;
+
+			uacUser = uacUserService.findById(1);
+			System.out.println(uacUser.getUsername());
+
 		} catch (DaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+
 	@Ignore
 	@Test
-	public void del(){
+	public void del() {
 		UacUser uacUser = new UacUser();
 		uacUser.setId(4);
 		try {
@@ -89,13 +87,14 @@ public class ServiceText {
 			e.printStackTrace();
 		}
 	}
+
 	@Ignore
 	@Test
-	public void findByAll(){
+	public void findByAll() {
 		try {
 			String hql = "from UacUser u";
 			List<UacUserDto> uacUsers = uacUserService.findByAll();
-			for(UacUserDto uacUser : uacUsers ){
+			for (UacUserDto uacUser : uacUsers) {
 				System.out.println(uacUser.getAccount());
 			}
 		} catch (DaoException e) {
