@@ -20,7 +20,7 @@ public interface UacRoleService extends BaseService<UacRole> {
 	 * @return
 	 * @throws DaoException
 	 */
-	public List<UacRoleDto> selectBackendRole() throws DaoException;
+	public List<UacRoleDto> findAdminRole() throws DaoException;
 	
 	Long findCount() throws DaoException;
 

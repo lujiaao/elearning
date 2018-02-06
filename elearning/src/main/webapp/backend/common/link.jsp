@@ -12,6 +12,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="<%=basePath %>js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="<%=basePath %>bootstrap/js/bootstrap.min.js"></script>
 
-<!-- 分页脚本 --><%-- 
+<!-- 分页脚本 -->
 <script src="<%=basePath%>js/bootstrap-paginator.min.js"></script>
-<script src="<%=basePath%>js/page.js"></script> --%>

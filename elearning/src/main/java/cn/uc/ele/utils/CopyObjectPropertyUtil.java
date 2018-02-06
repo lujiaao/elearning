@@ -7,9 +7,9 @@ import org.springframework.beans.BeanUtils;
 
 public class CopyObjectPropertyUtil {
 	/**
-	 * 将对象从一个类型的list转换成另一种类型的list，拷贝他们的属性值。
-	 * @param originList
-	 * @param targetType
+	 * 将对象集合的属性转换成与它具有相同属性类的集合中。
+	 * @param originList 对象集合
+	 * @param targetType 类
 	 * @return
 	 */
 	public static List copyProperties(List originList,Class targetType){
@@ -20,6 +20,7 @@ public class CopyObjectPropertyUtil {
 				Object targetObj = targetType.newInstance();
 				
 				BeanUtils.copyProperties(fromObj, targetObj);
+				
 				targetList.add(targetObj);
 			}			
 		} catch (InstantiationException e) {
@@ -31,6 +32,12 @@ public class CopyObjectPropertyUtil {
 		return targetList;
 	}
 
+	/**
+	 * 将一个对象属性拷贝到与它相似的类中
+	 * @param obj 属性有值对象
+	 * @param targetType 待拷贝类
+	 * @return
+	 */
 	public static Object copyProperty(Object obj, Class targetType){
 		Object targetObj = null;
 		try {

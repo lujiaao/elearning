@@ -18,17 +18,19 @@ public class UacRoleServiceImpl extends BaseServiceImpl<UacRole> implements UacR
 
 	@Autowired
 	UacRoleDao roleDao;
-	
+	//
 	@Override
 	public List<UacRoleDto> findByAll(int pageNum) throws DaoException {
 		String hql = "from UacRole ur";
-		List<UacRole> roles = roleDao.selectPageListByCondition(pageNum, PageHelper.PAGESIZE, hql);
+		List<UacRole> roles = roleDao.selectPageListByCondition(pageNum,PageHelper.PAGESIZE, hql);
+		
+		
 		return CopyObjectPropertyUtil.copyProperties(roles, UacRoleDto.class);
 	}
 
 	@Override
-	public List<UacRoleDto> selectBackendRole() throws DaoException {
-		String hql = "from UacRole ur where roleCode like BACKEND%";
+	public List<UacRoleDto> findAdminRole() throws DaoException {
+		String hql = "from UacRole ur where roleType = 1";
 		List<UacRole> roles = roleDao.selectListByCondition(hql);
 		return CopyObjectPropertyUtil.copyProperties(roles, UacRoleDto.class);
 	}

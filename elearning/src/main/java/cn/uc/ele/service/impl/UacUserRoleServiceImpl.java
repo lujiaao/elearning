@@ -7,6 +7,6 @@ import cn.uc.ele.service.UacUserRoleService;
 
 @Service
 public class UacUserRoleServiceImpl extends BaseServiceImpl<UacUserRole> implements UacUserRoleService {
-
+	
 
 }

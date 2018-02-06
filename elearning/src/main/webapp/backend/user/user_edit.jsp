@@ -97,7 +97,14 @@
 			<div class="col-xs-4">
 				<select name="sysDepartment.id" class="form-control">
 					<c:forEach items="${requestScope.departments }" var="department">
-						<option value="${department.id }">${department.depttName }</option>
+						<c:choose>
+							<c:when test="${uacUser.sysDepartment.id eq department.id }">
+								<option value="${department.id }" selected="selected">${department.depttName }</option>
+							</c:when>
+							<c:otherwise>
+								<option value="${department.id }">${department.depttName }</option>
+							</c:otherwise>
+						</c:choose>
 					</c:forEach>
 				</select>
 			</div>

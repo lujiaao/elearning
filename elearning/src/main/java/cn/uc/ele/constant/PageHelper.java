@@ -9,5 +9,5 @@ public interface PageHelper {
 	/**
 	 * 每一页所显示的数据
 	 */
-	int PAGESIZE = 1;
+	int PAGESIZE = 6;
 }

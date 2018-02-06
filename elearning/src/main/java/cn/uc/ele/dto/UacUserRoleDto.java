@@ -2,12 +2,15 @@ package cn.uc.ele.dto;
 
 import java.io.Serializable;
 
+import cn.uc.ele.pojo.UacRole;
+import cn.uc.ele.pojo.UacUser;
+
 
 public class UacUserRoleDto implements Serializable{
 	private Integer id;
 	
-	private UacUserDto uacUser;
-	private UacRoleDto uacRole;
+	private UacUser uacUser;
+	private UacRole uacRole;
 	
 	
 	public Integer getId() {
@@ -16,16 +19,16 @@ public class UacUserRoleDto implements Serializable{
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public UacUserDto getUacUser() {
+	public UacUser getUacUser() {
 		return uacUser;
 	}
-	public void setUacUser(UacUserDto uacUser) {
+	public void setUacUser(UacUser uacUser) {
 		this.uacUser = uacUser;
 	}
-	public UacRoleDto getUacRole() {
+	public UacRole getUacRole() {
 		return uacRole;
 	}
-	public void setUacRole(UacRoleDto uacRole) {
+	public void setUacRole(UacRole uacRole) {
 		this.uacRole = uacRole;
 	}
 }

@@ -1,8 +1,6 @@
 package cn.uc.ele.controller;
 
 import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -81,9 +79,9 @@ public class UacUserController {
 	 */
 	@RequestMapping("userFindByAll")
 	public ModelAndView getUacUserByAll(){
-		List<UacUserDto> uacUsers = null;
+		List<UacUserDto> UserDtos = null;
 		try {
-			uacUsers = uacUserService.findByAll();
+			UserDtos = uacUserService.findByAll();
 		} catch (DaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -91,7 +89,7 @@ public class UacUserController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return new ModelAndView("user/user_main").addObject("uacUserAll", uacUsers);
+		return new ModelAndView("user/user_main").addObject("uacUserAll", UserDtos);
 	}
 	
 	/**
@@ -101,18 +99,18 @@ public class UacUserController {
 	 */
 	@RequestMapping("/userEditBefore")
 	public ModelAndView editAfter(int id){
-		UacUserDto uacUser=null;
+		UacUserDto UserDto = null;
 		List<SysDepartment> departments=null;
 		try {
-			uacUser = uacUserService.findById(id);
+			UserDto = uacUserService.findById(id);
 			departments = departmentService.findByAll();
 		} catch (DaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(uacUser.getRegTime());
-		System.out.println(uacUser.getUsername());
-		return new ModelAndView("user/user_edit").addObject("uacUser", uacUser).addObject("departments", departments);
+//		System.out.println(UserDto.getRegTime());
+//		System.out.println(UserDto.getUsername());
+		return new ModelAndView("user/user_edit").addObject("uacUser", UserDto).addObject("departments", departments);
 	}
 	
 	/**
@@ -135,6 +133,12 @@ public class UacUserController {
 		return new ModelAndView("message").addObject("mess", mess);
 	}
 	
+	/**
+	 * 删除用户
+	 * @param user
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/userDel")
 	public String del(UacUser user,Model model){
 		

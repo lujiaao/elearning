@@ -25,7 +25,9 @@ public class UacUser implements java.io.Serializable {
 	// Fields
 
 	private Integer id;
+	
 	private SysDepartment sysDepartment;
+	
 	private String account;
 	private String email;
 	private String password;

@@ -4,8 +4,9 @@
 <%
 	String appPath = request.getContextPath();
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -33,7 +34,23 @@
 }
 
 .my-pageLimit {
-	margin: 12px 0 11px 0;
+	margin: 12px 0 8px 0;
+}
+
+.role-label, .role-input {
+	padding: 0;
+	margin: 0;
+	background-color: #ffffff;
+}
+
+.role-label {
+	text-align: right;
+	line-height: 34px;
+}
+
+.input-radio {
+	height: 34px;
+	line-height: 34px;
 }
 </style>
 </head>
@@ -47,7 +64,7 @@
 					type="button" value="查询" />
 			</div>
 			<div class="col-md-2 acol-role">
-				<a href="">新增角色</a>
+				<a id="add_role">新增角色</a>
 			</div>
 		</div>
 
@@ -72,7 +89,7 @@
 						<td width="7%">${role.disSeq }</td>
 						<c:choose>
 							<c:when test="${role.isDeactive eq false}">
-								<td width="2%"><input
+								<td width="5%"><input
 									class="btn btn-bg btn-danger role-btn" type="button" value="禁用" /></td>
 							</c:when>
 							<c:when test="${role.isDeactive eq true}">
@@ -93,7 +110,8 @@
 								<ul class="dropdown-menu">
 									<li><a href="#">角色授权</a></li>
 									<li><a href="#">编辑</a></li>
-									<li><a href="#">删除</a></li>
+									<li><a class="del-btn"
+										data-id="${role.id}" data-roleName="${role.roleName}">删除</a></li>
 								</ul>
 							</div>
 						</td>
@@ -107,25 +125,19 @@
 				<span>总记录数：<span>${count }</span></span>
 
 			</div>
-			<!--分页区域-->
-			<!-- <div class="col-md-8  text-align  my-acol">
-				<ul id="pageLimit" class="navbar-btn"></ul>
-			</div> -->
-			<!--分页界面-->
 			<div class="col-md-8 my-acol">
-				<div id="pageDiv" style="text-align:center;">
+				<div id="pageDiv" style="text-align:center;height: 57px;">
 					<ul id="pageLimit"></ul>
 				</div>
 			</div>
 			<div class="col-md-2 acol-role">
-				<span><span>当前页数：</span>/<span>${pageNum }</span></span>
+				<span><span>当前页/总页数：${pageNum }</span>/<span>${pages }</span></span>
 			</div>
-
-			<!-- <div id="pageBox"></div> -->
 		</div>
 	</div>
 
-	<div class="modal fade" tabindex="-1" role="dialog">
+	<!--添加角色模态框-->
+	<div id="add_role_modal" class="modal fade" tabindex="-1" role="dialog">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -133,53 +145,118 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title">Modal title</h4>
+					<h4 class="modal-title"></h4>
 				</div>
 				<div class="modal-body">
-					<p>One fine body&hellip;</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
+					<form class="form-horizontal" action="<%=appPath%>/backend/addRole" method="post">
+						<div class="form-group text-right">
+							<label class="col-xs-4 role-label">角色名称：</label>
+							<div class="col-xs-5 role-input">
+								<input type="text" name="roleName" class="form-control">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-4 role-label">角色类型：</label>
+							<div class="col-xs-6 role-input input-radio">
+								<input type="radio" name="roleType" value="后台管理员角色">后台管理员角色
+								<input type="radio" name="roleType" checked="checked"
+									value="前台普通用户角色">前台普通用户角色
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-4 role-label">显示顺序：</label>
+							<div class="col-xs-5 role-input">
+								<input type="text" name="disSeq" class="form-control" />
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary"
+								data-dismiss="modal">取消</button>
+							<button type="submit" class="btn btn-primary add-btn">确认</button>
+						</div>
+					</form>
 				</div>
 			</div>
-			<!-- /.modal-content -->
 		</div>
-		<!-- /.modal-dialog -->
+	</div>
+	<!--删除角色模态框-->
+	<div id="del-modal" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">删除提示</h4>
+				</div>
+				<div class="modal-body">
+					<h3 class="message"></h3>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="button" class="btn btn-primary ok-btn">确定删除</button>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
+
+<script src="<%=appPath%>/backend/js/user/role_main.js"></script>
 <script src="<%=appPath%>/js/bootstrap-paginator.min.js"></script>
+
 <script>
-$(function(){
-	//分页初始化
-	//	分页前端脚本
-    $('#pageLimit').bootstrapPaginator({
-        currentPage:${requestScope.pageNum},//当前的请求页面。
-        totalPages:${requestScope.pages},//一共多少页。
-        size: "normal",//应该是页眉的大小。
-        bootstrapMajorVersion: 3,//bootstrap的版本要求。
-        alignment: "right",
-        numberOfPages:${requestScope.pageSize},//一页列出多少数据。
-        itemTexts: function (type, page, current) {//如下的代码是将页眉显示的中文显示我们自定义的中文。
-            switch (type) {
-                case "first":
-                    return "首页";
-                case "prev":
-                    return "上一页";
-                case "next":
-                    return "下一页";
-                case "last":
-                    return "末页";
-                case "page":
-                    return page;
-            }
-        },
-        onPageClicked: function (event, originalEvent, type, page) {//给每个页眉绑定一个事件，其实就是ajax请求，其中page变量为当前点击的页上的数字。
-        	window.location = "<%=appPath%>/backend/getByAll?pageNum="+page;
-        }
-    });
-    $('#pageLimit').addClass("my-pageLimit");
-});
+	$(function() {
+		/* 添加角色 */
+		$(function() {
+			$('#add_role').click(function() {
+				$('#add_role_modal').modal('show');
+			});
+		});
+
+		/* 删除角色 */
+		$(function() {
+			$('.del-btn').click(function() {
+				var id = $(this).data('id');
+				var roleName = $(this).data('roleName');
+				$('#del-modal .modal-body .message').text("确定要删除" + roleName + "用户吗!");
+				$('#del-modal .modal-footer .ok-btn').data("id", id);
+				$('#del-modal').modal('show');
+			});
+			$('#del-modal .modal-footer .ok-btn').click(function() {
+				window.location.href = '<%=appPath%>/backend/delRole?id=' + $(this).data('id');
+			});
+		})
+
+		//分页初始化
+		//	分页前端脚本
+		$('#pageLimit').bootstrapPaginator({
+			currentPage : "${pageNum}", //当前的请求页面。
+			totalPages : "${pages}", //一共多少页。
+			size : "normal", //应该是页眉的大小。
+			bootstrapMajorVersion : 3, //bootstrap的版本要求。
+			alignment : "right",
+			numberOfPages : "${pageSize}", //一页列出多少数据。
+			itemTexts : function(type, page, current) { //如下的代码是将页眉显示的中文显示我们自定义的中文。
+				switch (type) {
+				case "first":
+					return "首页";
+				case "prev":
+					return "上一页";
+				case "next":
+					return "下一页";
+				case "last":
+					return "末页";
+				case "page":
+					return page;
+				}
+			},
+			onPageClicked : function(event, originalEvent, type, page) { //给每个页眉绑定一个事件，其实就是ajax请求，其中page变量为当前点击的页上的数字。
+				window.location = "<%=appPath%>/backend/getByAll?pageNum=" + page;
+			}
+		});
+		$('#pageLimit').addClass("my-pageLimit");
+	});
 </script>
 
 </html>

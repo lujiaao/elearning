@@ -2,6 +2,8 @@ package cn.uc.ele.dto;
 
 import java.sql.Timestamp;
 
+import cn.uc.ele.pojo.SysDepartment;
+
 
 @SuppressWarnings("serial")
 public class UacUserDto  implements java.io.Serializable {
